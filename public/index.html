@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ganesh U P — Full Stack Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1720;
+    --panel: #141F2B;
+    --text: #E7ECEF;
+    --text-dim: #8A97A3;
+    --gold: #D4A017;
+    --teal: #3E7C8C;
+    --line: #24313D;
+    --green-status: #4FA97C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    padding: 100px 0 80px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 52px;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  h1 span { color: var(--gold); font-style: italic; }
+  .tagline {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 520px;
+    margin-bottom: 40px;
+  }
+
+  .trace {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+    max-width: 560px;
+    overflow-x: auto;
+  }
+  .trace .req { color: var(--text-dim); }
+  .trace .method { color: var(--teal); font-weight: 500; }
+  .trace .status { color: var(--green-status); font-weight: 500; }
+  .trace .key { color: var(--teal); }
+  .trace .str { color: var(--gold); }
+  .trace pre { white-space: pre-wrap; }
+
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .label::before { content: "// "; color: var(--line); }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .about-text { max-width: 640px; color: var(--text-dim); font-size: 16px; }
+  .about-text strong { color: var(--text); font-weight: 500; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .card h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .card ul { list-style: none; color: var(--text-dim); font-size: 14.5px; }
+  .card li { padding: 6px 0; padding-left: 16px; position: relative; }
+  .card li::before { content: "–"; position: absolute; left: 0; color: var(--teal); }
+
+  .job { margin-bottom: 40px; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .job-title { font-size: 17px; font-weight: 500; color: var(--text); }
+  .job-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text-dim);
+  }
+  .job-sub { font-size: 14px; color: var(--teal); margin-bottom: 10px; }
+  .job-desc { color: var(--text-dim); font-size: 14.5px; max-width: 680px; }
+  .job-desc p { margin-bottom: 8px; }
+  .job-desc p:last-child { margin-bottom: 0; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 8px;
+  }
+  .skill-group h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  .recognition-item { margin-bottom: 14px; font-size: 14.5px; color: var(--text-dim); }
+  .recognition-item strong { color: var(--text); }
+
+  footer { padding: 56px 0 80px; }
+  .contact-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .contact-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .contact-links a {
+    font-size: 14.5px;
+    color: var(--text);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+  }
+  .contact-links a:hover { border-color: var(--gold); color: var(--gold); }
+
+  @media (max-width: 640px) {
+    header { padding: 64px 0 48px; }
+    h1 { font-size: 36px; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Austin, TX</div>
+    <h1>Ganesh U P<br><span>Full Stack Engineer</span></h1>
+    <p class="tagline">8+ years building cloud-native systems, from early-stage AI startups to platforms serving 40M+ users. I own delivery end to end: code, pipelines, and infrastructure.</p>
+
+    <div class="trace">
+<pre><span class="method">GET</span> <span class="req">/engineers/ganesh</span>
+<span class="status">200 OK</span>
+
+{
+  <span class="key">"role"</span>: <span class="str">"Full Stack Engineer"</span>,
+  <span class="key">"experience_years"</span>: 8,
+  <span class="key">"stack"</span>: [<span class="str">"Go"</span>, <span class="str">"Node.js"</span>, <span class="str">"Python"</span>, <span class="str">"React"</span>],
+  <span class="key">"scale"</span>: <span class="str">"100K+ req/min"</span>,
+  <span class="key">"status"</span>: <span class="str">"open to opportunities"</span>
+}</pre>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="label">About</div>
+    <p class="about-text">
+      I write the code, build the pipelines, and run the infrastructure, without handing off to a separate ops team. My background spans modernizing legacy Golang, PHP, Python, and Node.js monoliths into containerized microservices on Kubernetes and AWS ECS, always keeping production stable through the transition. Beyond the day job, I've been the founding engineer on a funded AI startup, taking a privacy-first RAG platform from <strong>zero to funded in 45 days</strong>.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Scale & reliability</h3>
+        <ul>
+          <li>Shipped production systems at 100K+ requests/minute</li>
+          <li>Rebuilt a document pipeline from 15s to under 1s, zero P0/P1 incidents post-launch</li>
+          <li>Built CI/CD pipelines that cut deployment risk</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>AI & modern infra</h3>
+        <ul>
+          <li>Deployed RAG pipelines using Confidential Containers on Kubernetes</li>
+          <li>Built a real-time translation service recognized at AWS re:Invent 2023</li>
+          <li>Integrated OpenAI-powered chatbots serving 40M+ students</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="label">Experience</div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Synergent Tech Solutions</span>
+        <span class="job-time">Jul 2025 – Present</span>
+      </div>
+      <div class="job-sub">Senior Software Engineer I · IBM Power Hybrid Cloud Platform</div>
+      <div class="job-desc">
+        <p>Backend APIs and automation workflows for a platform projected to exceed $2B annually. Migrated a monolithic Golang application to microservices on Kubernetes, and designed event-driven Kafka workflows to decouple high-throughput services.</p>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Mymir.ai</span>
+        <span class="job-time">Founding Engineer</span>
+      </div>
+      <div class="job-sub">Privacy-first RAG platform for enterprise document intelligence</div>
+      <div class="job-desc">
+        <p>Architected and deployed the full platform from scratch in 45 days: backend services, RAG pipeline, cloud infrastructure, and observability. Deployed inference using Confidential Containers (CoCo) on Kubernetes so customer data never left their environment. Helped the founders close a $100K seed round within 45 days of starting the build.</p>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">PowerSchool</span>
+        <span class="job-time">Nov 2021 – Jun 2025</span>
+      </div>
+      <div class="job-sub">Full Stack Engineer · Naviance, college and career readiness platform</div>
+      <div class="job-desc">
+        <p>Backend and React.js frontend work serving 40M+ students across 14,000+ school districts at roughly 100K requests/minute. Shipped a real-time translation service recognized at AWS re:Invent 2023, rebuilt document processing from 15s to under 1s, and integrated an OpenAI-powered chatbot for career guidance.</p>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Robosoft Technologies</span>
+        <span class="job-time">Aug 2020 – Oct 2021</span>
+      </div>
+      <div class="job-sub">Software Engineer · Brightline & OTTPlay</div>
+      <div class="job-desc">
+        <p><strong style="color: var(--text)">Brightline</strong> (intercity railroad platform): Golang REST APIs for real-time train status at 30K+ requests/minute, webhooks ingesting live tracking data, containerized CI/CD on AWS ECS.</p>
+        <p><strong style="color: var(--text)">OTTPlay</strong> (OTT recommendation platform): Node.js/Express APIs serving 7M+ users across 60+ providers, custom crawlers normalizing 65K+ content assets, Elasticsearch and MongoDB for search.</p>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Infomaze Elite Pvt. Ltd.</span>
+        <span class="job-time">Apr 2018 – Jul 2020</span>
+      </div>
+      <div class="job-sub">Junior Software Developer</div>
+      <div class="job-desc">
+        <p>Node.js backend processing real-time biometric data over TCP for 24/7 health monitoring with SOS alerting. Built a React.js admin portal and a Python (Pyramid) location-based social event platform with Firebase and Twilio integrations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="label">Tech stack</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages & frameworks</h4>
+        <div class="pill-row">
+          <span class="pill">Go</span><span class="pill">Node.js</span><span class="pill">TypeScript</span>
+          <span class="pill">Python</span><span class="pill">React</span><span class="pill">PHP</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Infra & cloud</h4>
+        <div class="pill-row">
+          <span class="pill">AWS</span><span class="pill">Kubernetes</span><span class="pill">Docker</span><span class="pill">Kafka</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Databases</h4>
+        <div class="pill-row">
+          <span class="pill">PostgreSQL</span><span class="pill">MongoDB</span><span class="pill">Redis</span><span class="pill">Elasticsearch</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>AI / ML</h4>
+        <div class="pill-row">
+          <span class="pill">OpenAI</span><span class="pill">RAG pipelines</span><span class="pill">Vector search</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>AI coding agents</h4>
+        <div class="pill-row">
+          <span class="pill">Claude Code</span><span class="pill">Codex</span><span class="pill">IBM Bob</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recognitions">
+    <div class="label">Recognitions</div>
+    <div class="recognition-item"><strong>AWS re:Invent 2023</strong> — real-time translation service recognized for cost-effective, high-performance design</div>
+    <div class="recognition-item"><strong>NINJA Award 2018</strong> and <strong>Star Achiever Award 2019</strong>, Infomaze Elite Pvt. Ltd.</div>
+  </section>
+
+  <footer id="contact">
+    <div class="label">Contact</div>
+    <div class="contact-line">Based in Austin, TX. Open to full-time roles with H-1B transfer sponsorship.</div>
+    <div class="contact-links">
+      <a href="mailto:ganesh.udayapura.papegowda@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/YOUR-LINKEDIN-HANDLE">LinkedIn</a>
+      <a href="https://github.com/GaneshUP">GitHub</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
